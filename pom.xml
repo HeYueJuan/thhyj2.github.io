@@ -1,0 +1,310 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>cn.com.intasect</groupId>
+    <artifactId>isct-web</artifactId>
+    <packaging>war</packaging>
+    <version>2.2.0.0.0.0.0-RELEASE</version>
+    <name>isct-web</name>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <core.version>2.2.0.0.0.0.0-RELEASE</core.version>
+        <cxf.version>3.2.6</cxf.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>javax.annotation-api</artifactId>
+                    <groupId>javax.annotation</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- session 共享 -->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.session</groupId>-->
+        <!--<artifactId>spring-session-data-redis</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- 代码生成器 -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>codegenerator-spring-boot-starter</artifactId>-->
+        <!--<version>2.1.0-RELEASE</version>-->
+        <!--</dependency>-->
+
+        <!-- 核心依赖 不能少-->
+        <dependency>
+            <groupId>cn.com.intasect</groupId>
+            <artifactId>isct-core</artifactId>
+            <version>${core.version}</version>
+        </dependency>
+
+        <!-- 基础依赖 不能少-->
+        <dependency>
+            <groupId>cn.com.intasect</groupId>
+            <artifactId>isct-common</artifactId>
+            <version>${core.version}</version>
+        </dependency>
+
+        <!-- 异步任务 -->
+        <!--        <dependency>-->
+        <!--            <groupId>cn.com.intasect</groupId>-->
+        <!--            <artifactId>isct-asyn-task</artifactId>-->
+        <!--            <version>${core.version}</version>-->
+        <!--        </dependency>-->
+
+        <!-- 任务调度 -->
+        <dependency>
+        <groupId>cn.com.intasect</groupId>
+        <artifactId>isct-job</artifactId>
+        <version>${core.version}</version>
+        </dependency>
+
+        <!-- 工作表 -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-poi</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- 报表 -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-report</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- weixin -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-weixin</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- redis -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-cache</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- rabbitmq -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-rabbitmq</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- websocket 需要引入isct-cache、isct-rabbitmq -->
+        <!--<dependency>-->
+        <!--<groupId>cn.com.intasect</groupId>-->
+        <!--<artifactId>isct-websocket</artifactId>-->
+        <!--<version>${core.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- 工作流 -->
+        <!--        <dependency>-->
+        <!--            <groupId>cn.com.intasect</groupId>-->
+        <!--            <artifactId>isct-workflow</artifactId>-->
+        <!--            <version>${core.version}</version>-->
+        <!--        </dependency>-->
+        <!-- cxf -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-core</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>${cxf.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>0.0.20131108.vaadin1</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!---jsoup是一款Java的HTML解析器-->
+        <dependency>
+            <!-- jsoup HTML parser library @ https://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.11.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                    <compilerArguments>
+                        <extdirs>src/main/webapp/WEB-INF/lib</extdirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/webapp/WEB-INF/lib</directory>
+                            <targetPath>WEB-INF/lib/</targetPath>
+                            <includes>
+                                <include>**/*.jar</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>nexus-isct</id>
+            <url>http://182.151.199.111:9092/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>aliyun-public</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
